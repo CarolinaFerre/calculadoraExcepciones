@@ -1,0 +1,82 @@
+package excepciones;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class ejercicio1 {
+static Scanner sc=new Scanner (System.in);
+//variables estáticas
+static int numero1;
+static int numero2;
+static String operador;
+static int suma;
+static int resta;
+static int producto;
+static double division;
+static int contador;
+
+	public static int opcionSuma(int numero1,int numero2,String operador) {
+		suma=numero1+numero2;
+		return suma;
+	}
+	public static int opcionResta(int numero1,int numero2,String operador) {
+		resta=numero1-numero2;
+		return resta;
+	}
+	public static int opcionProducto(int numero1,int numero2,String operador) {
+		producto=numero1*numero2;
+		return producto;
+	}
+	public static double opcionDivision(int numero1,int numero2,String operador) {
+		division=numero1/numero2;
+		return division;
+	}
+	
+	public static void main(String[] args) throws InputMismatchException,ArithmeticException{
+		System.out.println("CALCULADORA JAVA:");
+		while(contador!=5) {
+		System.out.println("Introduce número para operar...");
+		//EXCEPCIÓN DE ELEMENTO RECIBIDO QUE NO CORRESPONDE AL DATO ESPERADO, SALTA CUANDO SE PONE UN CARACTER DISTINTO A UN INT
+		try {
+		numero1=sc.nextInt();
+		System.out.println("Introduce otro número para operar...");
+		numero2=sc.nextInt();
+		}catch(InputMismatchException e) 
+		{
+		System.out.println("El elemento recibido no corresponde al tipo de dato esperado, inténtelo de nuevo por favor");
+		}
+		System.out.println("Introduce un operador...");
+		
+		operador=sc.next();
+		
+		
+		switch(operador) {
+		case "+":
+			System.out.println(ejercicio1.opcionSuma(numero1,numero2,operador));
+			contador++;
+			break;
+		case "-":
+			System.out.println(ejercicio1.opcionResta(numero1, numero2, operador));
+			contador++;
+			break;
+		case "*":
+			System.out.println(ejercicio1.opcionProducto(numero1,numero2,operador));
+			contador++;
+			break;
+		case "/":
+			//EXCEPCIÓN DE DIVIDIR ENTRE 0, SALTA CUANDO SE DIVIDE ENTRE EL NÚMERO 0
+			try {
+			System.out.println(ejercicio1.opcionDivision(numero1, numero2, operador));
+			}catch(ArithmeticException exc) {
+				System.out.println("0");
+			}
+			contador++;
+			break;
+		default:
+			System.out.println("ERROR");
+			contador++;
+				}
+		
+			}
+		
+		}
+
+	}
